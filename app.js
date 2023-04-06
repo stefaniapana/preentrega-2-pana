@@ -85,20 +85,20 @@
 
 // TERCERA PREENTREGA
 
-const nombreIngresado = prompt ("Ingrese su nombre para una expriencia más personalizada");
+// let avisoNinio = prompt(nombreIngresado + ', ¿En tu mesa se encontrará algún niño? Responde "si" o "no".')
+// if(avisoNinio == "si"){
+//     alert("Este sitio es para vos, contamos con juegos y entretenimiento para tus niños.");
+// }
+// if(avisoNinio == "no"){
+//     alert("Este sitio es para vos, contamos con juegos para que los niños que asistan estén entretenidos toda la velada y tengas una noche soñada.");
+// }
 
-let avisoNinio = prompt(nombreIngresado + ', ¿En tu mesa se encontrará algún niño? Responde "si" o "no".')
-if(avisoNinio == "si"){
-    alert("Este sitio es para vos, contamos con juegos y entretenimiento para tus niños.");
-}
-if(avisoNinio == "no"){
-    alert("Este sitio es para vos, contamos con juegos para que los niños que asistan estén entretenidos toda la velada y tengas una noche soñada.");
-}
+// const nombreIngresado = prompt ("Ingrese su nombre para una expriencia más personalizada");
 
-// DOM // CAMBIO UN NODO // NO SALE
+// // DOM // CAMBIO UN NODO // NO SALE
 
-const bienvenidaUsuario = getElementById('bienvenidaUsuario');
-bienvenidaUsuario.innerText = nombreIngresado + ', le damos la bienvenida.';
+// const bienvenidaUsuario = document.getElementById('bienvenidaUsuario');
+// bienvenidaUsuario.innerText = nombreIngresado + ', le damos la bienvenida.';
 
 //EVENTOS // CLICK
 
@@ -161,4 +161,126 @@ botonIngredientes.addEventListener("click", function(){
 });
 
 
+//Items del Menú
 
+const menu = [
+    {
+        id: 1,
+        titulo: "Pizza Oro Verde",
+        categoria: "Pizzería",
+        precio: 10,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 2,
+        titulo: "Delizia agli Agrumi",
+        categoria: "Postre",
+        precio: 3,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 3,
+        titulo: "Panna Cotta",
+        categoria: "Postre",
+        precio: 2,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 4,
+        titulo: "Pizza Quattro Formaggi",
+        categoria: "Pizzería",
+        precio: 9,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 5,
+        titulo: "Tagliatelle all'astice",
+        categoria: "Ristorante",
+        precio: 14,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 6,
+        titulo: "Risotto agli Asparagi",
+        categoria: "Ristorante",
+        precio: 13,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 7,
+        titulo: "Pizza Quattro Stagioni",
+        categoria: "Pizzeria",
+        precio: 14,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 1,
+        titulo: "Grigliata Mista di Pesce",
+        categoria: "Ristorante",
+        precio: 20,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 8,
+        titulo: "Tartufo al Cioccolato Blanco",
+        categoria: "Postre",
+        precio: 3,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+    {
+        id: 9,
+        titulo: "Pizza Rucola e Prosciutto Crudo",
+        categoria: "Pizzeria",
+        precio: 10,
+        descripcion: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit repellendus laborum quam saepe pariatur enim doloribus itaque laudantium vitae perferendis.",
+    },
+]
+
+const sectionMenu = document.querySelector(".sectionMenu");
+
+const filtroBtn = document.querySelectorAll(".filtroBtn")
+
+//Cargo Elementos
+
+window.addEventListener("DOMContentLoaded", function(){
+    displayMenuItems(menu);
+    const categorias = menu.map(function(values,item){
+    if(!values.includes(item.categoria)){
+        values.push(item.categoria)
+    }
+    return values;
+}, ['Todos']);
+console.log(categorias);
+});
+
+//Filtro Elementos
+
+filtroBtn.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        const categoria = e.currentTarget.dataset.id;
+        const menuCategoria = menu.filter(function (menuItem) {
+            if(menuItem.categoria === categoria){
+                return menuItem;
+            }   
+        });
+        if (categoria === 'Todo'){
+            displayMenuItems(menu);
+        } else{
+            displayMenuItems(menuCategoria);
+        };
+    });
+});
+
+//Mostrar Menú
+
+function displayMenuItems(menuItems){
+    let displayMenu = menu.map(function (item) {
+        return`<article class="articulo">
+            <h2 class="producto"> ${item.titulo} </h2>
+            <h3 class="precioProducto">$${item.precio}</h3>
+            <p class="descripcionProducto">${item.descripcion}</p>
+            </article>`;
+    });
+    displayMenu= displayMenu.join("");
+    sectionMenu.innerHTML = displayMenu
+}
