@@ -157,7 +157,14 @@ alert('La seña será de ' + ((comensales * monto) * senia) + ' euros.')
 let botonIngredientes = document.getElementById("botonIngredientes");
 
 botonIngredientes.addEventListener("click", function(){
-    alert('Todos los Ingredientes del plato')
+    Swal.fire({
+        title: "Tagliatelle all'astice",
+        text: 'Contenedor de todos los ingredientes del plato',
+        imageUrl: '/image/plato.jpeg',
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+    })
 });
 
 
@@ -284,3 +291,4 @@ function displayMenuItems(menuItems){
     displayMenu= displayMenu.join("");
     sectionMenu.innerHTML = displayMenu
 }
+
