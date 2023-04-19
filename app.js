@@ -292,3 +292,15 @@ function displayMenuItems(menuItems){
     sectionMenu.innerHTML = displayMenu
 }
 
+//Agrego la Temperatura a la página
+
+fetch("https://api.openweathermap.org/data/2.5/weather?q=Córdoba&appid=bbf8893c6e8030e157bb633d11a66e17&units=metric&lang=es")
+    .then (response => response.json())
+    .then(data => {
+        const lugar = document.getElementById('lugar');
+        const temperatura = document.getElementById('temperatura');
+        const clima = document.getElementById('clima');
+        lugar.innerText = 'Ciudad: ' + lugar;
+        temperatura.innerText = 'Temperatura: ' + temperatura;
+        clima.innerText = 'Clima: ' + clima;
+    })
