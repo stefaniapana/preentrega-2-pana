@@ -294,6 +294,15 @@ function displayMenuItems(menuItems){
 
 //Agrego la Temperatura a la página
 
+// fetch("https://api.openweathermap.org/data/2.5/weather?q=Córdoba&appid=bbf8893c6e8030e157bb633d11a66e17&units=metric&lang=es")
+//     .then (response => response.json())
+//     .then(data => {
+//         document.body.innerHTML = `<p>${data.name}</p>
+//                                     <p>${data.main.temp}</p>
+//                                     <p>${data.weather[0].description}</p>
+//                                     <p>Recuerda, si la temperatura es mayor a 15ºC y no está pronosticado lluvia, se utilizará el espacio exterior, de lo contrario se utilizará la sala interna.</p>`
+//     })
+
 fetch("https://api.openweathermap.org/data/2.5/weather?q=Córdoba&appid=bbf8893c6e8030e157bb633d11a66e17&units=metric&lang=es")
     .then (response => response.json())
     .then(data => {
@@ -304,3 +313,4 @@ fetch("https://api.openweathermap.org/data/2.5/weather?q=Córdoba&appid=bbf8893c
         temperatura.innerText = 'Temperatura: ' + temperatura;
         clima.innerText = 'Clima: ' + clima;
     })
+
